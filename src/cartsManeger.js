@@ -33,14 +33,19 @@ const cartId = async(cid)=>{
 
 const cartProduct = async (cid, pid)=>{
     await getCarts();
-    const newProduct ={
-        id: pid,
-        quantity:1
-    }
     const index = cart.findIndex((c)=>c.id === cid);
-    
-    
+    if(index === -1){return}
+    const cartProduct = cart[index];
+    const  productIndex = cartProduct.products.findIndex((p)=>p.id === pid);
+    if(productIndex !== -1){
+        cartProduct.products[productIndex].quantity += 1
+    }else{
+        const newProduct ={
+            id: pid,
+            quantity:1
+        }
         cart[index].products.push(newProduct);
+    }
 
         await fs.promises.writeFile(pathFile, JSON.stringify(cart));
     
