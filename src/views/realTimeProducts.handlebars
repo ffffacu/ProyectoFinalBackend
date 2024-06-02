@@ -1,0 +1,40 @@
+<h1 class="text-4xl font-bold flex flex-col items-center">Bienvenido</h1>
+<div>
+    <div class="flex flex-col items-center">
+  <span class="text-lg font-bold">Nuevo producto</span>
+  <div class="relative mt-1">
+    <div class="w-12 h-1 bg-red-600"></div>
+    <div
+      class="absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-0 h-0 border-l-8 border-r-8 border-t-8 border-l-transparent border-r-transparent border-t-red-600"
+    ></div>
+  </div>
+</div>
+<form id="addForm" class="max-w-md mx-auto my-4">
+  <input id="nameProduct" type="text" placeholder="Nombre del producto" class="w-full p-3 mb-4 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+  <input id="priceProduct" type="text" placeholder="Precio del producto" class="w-full p-3 mb-4 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+  <input id="descriptionProduct" type="text" placeholder="Descripcion del producto" class="w-full p-3 mb-4 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+  <button type="submit" class="bg-red-700 text-white py-2 px-4">Agregar Producto</button>
+</form>
+</div>
+
+<div>
+    <div class="flex flex-col items-center">
+  <span class="text-lg font-bold">Borrar Producto</span>
+  <div class="relative mt-1">
+    <div class="w-12 h-1 bg-red-600"></div>
+    <div
+      class="absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-0 h-0 border-l-8 border-r-8 border-t-8 border-l-transparent border-r-transparent border-t-red-600"
+    ></div>
+  </div>
+</div>
+<form id="deleteForm" class="max-w-md mx-auto my-4">
+  <input id="idProduct" type="text" placeholder="Id producto a eliminar" class="w-full p-3 mb-4 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+  <button type="submit" class="bg-red-700 text-white py-2 px-4">Borrar producto</button>
+</form>
+</div>
+
+
+<div id="productListRender" class="flex flex-fil"></div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/index.js"></script>

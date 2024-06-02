@@ -7,7 +7,6 @@ const pathFile = "./src/data/products.json";
 const getProducts = async (limit) =>{
     const productsJson = await fs.promises.readFile(pathFile, "utf8");
     const productsJsonParse = JSON.parse(productsJson);
-    console.log(productsJsonParse);
     products = productsJsonParse || [];
     if(!limit) return products;
     return products.slice(0,limit);

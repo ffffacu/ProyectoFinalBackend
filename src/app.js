@@ -1,13 +1,29 @@
 import express from 'express';
 import router from './router/index.routes.js';
+import __dirname from "./utils.js";
+import handlebars from "express-handlebars";
+import {Server} from "socket.io";
+import viewsRoutes from "./router/views.routes.js";
+import productsManagers from "./productsManeger.js";
+
 
 const PORT = 8080;
 const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
-app.use("/static",express.static("public"));
+app.engine("handlebars", handlebars.engine());
+app.set("views",__dirname+"/views")
+app.set("view engine","handlebars");
+app.use(express.static("public"));
 
 app.use("/api", router);
+app.use("/", viewsRoutes);
 
-app.listen(PORT, ()=>{ console.log(` El servidor se esta escuchando en el puerto ${PORT}`);})
+const https = app.listen(PORT, ()=>{ console.log(` El servidor se esta escuchando en el puerto ${PORT}`);})
+export const newServer = new Server(https);
+
+
+newServer.on("connection", (socket)=>{
+    console.log("New user connection");
+})
