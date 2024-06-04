@@ -1,0 +1,13 @@
+hr{
+    border: 1px solid
+}
+.productFlex{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content:flex-start;
+}
+.productStyle{
+    border: 1px solid;
+    margin: 10px;
+}

@@ -1,12 +1,24 @@
-<h1>Bienvenidos</h1>
-
-<h2>Lista de productos</h2>
-
 <div>
+    <div class="flex flex-col items-center">
+        <span class="text-lg font-bold">Bienvenidos</span>
+  <span class="text-lg font-bold">Lista de productos</span>
+  <div class="relative mt-1">
+    <div class="w-12 h-1 bg-red-600"></div>
+    <div
+      class="absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-0 h-0 border-l-8 border-r-8 border-t-8 border-l-transparent border-r-transparent border-t-red-600"
+    ></div>
+  </div>
+</div>
+<div class="productFlex">
     {{#each product}}
-    <div>{{title}}</div>
-    <div>{{price}}</div>
+    <div class="text-center p-4 productStyle" >
+        <h2 class="text-red-600 font-bold text-lg">{{title}}</h2>
+        <p class="text-zinc-500">Id de producto: {{id}}</p>
+        <p class="text-zinc-500">Descripción: {{description}}</p>
+        <p class="text-zinc-800 font-bold text-xl">${{price}}</p>
+         </div>
     {{/each}}
+    </div>
 </div>
 
 

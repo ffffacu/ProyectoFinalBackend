@@ -35,17 +35,18 @@ deleteForm.addEventListener("submit", async (e) =>{
 
 
 socket.on("productsViews", async (data)=>{  
-const products = document.createElement ("div")
-products.setAttribute("id", "listProductId")
+const products = document.createElement ("div");
+products.setAttribute("id", "listProductId");
+products.classList.add("productFlex");
 listProduct.appendChild(products)
     await data.forEach((product) => {
         const cart = document.createElement("div");
         cart.classList.add("card");
         cart.innerHTML=`
-        <div class="text-center p-4" >
+        <div class="text-center p-4 productStyle" >
         <h2 class="text-red-600 font-bold text-lg">${product.title}</h2>
         <p class="text-zinc-500">Id de producto: ${product.id}</p>
-        <p class="text-zinc-500">${product.description}</p>
+        <p class="text-zinc-500">Descripción: ${product.description}</p>
         <p class="text-zinc-800 font-bold text-xl">$${product.price}</p>
          </div>
         `
