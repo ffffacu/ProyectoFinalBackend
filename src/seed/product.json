@@ -1,0 +1,122 @@
+[
+    {
+        "title": "Smartphone Samsung Galaxy S21",
+        "description": "Teléfono inteligente con pantalla AMOLED de 6.2 pulgadas y triple cámara de 64 MP.",
+        "price": 800,
+        "code": "SGS21-001",
+        "stock": 50,
+        "category": "Smartphones"
+    },
+    {
+        "title": "Laptop Dell XPS 13",
+        "description": "Laptop ultradelgada con procesador Intel i7, 16GB de RAM y 512GB SSD.",
+        "price": 1300,
+        "code": "DXPS13-002",
+        "stock": 30,
+        "category": "Laptops"
+    },
+    {
+        "title": "Auriculares Sony WH-1000XM4",
+        "description": "Auriculares inalámbricos con cancelación de ruido y hasta 30 horas de batería.",
+        "price": 350,
+        "code": "SWH1000XM4-003",
+        "stock": 70,
+        "category": "Auriculares"
+    },
+    {
+        "title": "Tablet Apple iPad Pro",
+        "description": "Tablet con pantalla Liquid Retina de 12.9 pulgadas y chip M1.",
+        "price": 1100,
+        "code": "AIPADPRO-004",
+        "stock": 25,
+        "category": "Tablets"
+    },
+    {
+        "title": "Smartwatch Garmin Forerunner 945",
+        "description": "Reloj inteligente con GPS y funciones avanzadas para deportistas.",
+        "price": 600,
+        "code": "GFR945-005",
+        "stock": 40,
+        "category": "Smartwatches"
+    },
+    {
+        "title": "Televisor LG OLED CX",
+        "description": "Televisor 4K OLED de 55 pulgadas con Dolby Vision y AI ThinQ.",
+        "price": 1500,
+        "code": "LGOLEDCX-006",
+        "stock": 15,
+        "category": "Televisores"
+    },
+    {
+        "title": "Cámara Canon EOS R5",
+        "description": "Cámara sin espejo con sensor full-frame de 45 MP y grabación 8K.",
+        "price": 3900,
+        "code": "CER5-007",
+        "stock": 10,
+        "category": "Cámaras"
+    },
+    {
+        "title": "Consola PlayStation 5",
+        "description": "Consola de videojuegos de próxima generación con SSD ultra rápido.",
+        "price": 500,
+        "code": "PS5-008",
+        "stock": 20,
+        "category": "Consolas"
+    },
+    {
+        "title": "Altavoz Inteligente Amazon Echo Dot",
+        "description": "Altavoz inteligente con Alexa y sonido de alta calidad.",
+        "price": 50,
+        "code": "AEDOT-009",
+        "stock": 100,
+        "category": "Altavoces"
+    },
+    {
+        "title": "Disco Duro Externo Seagate 2TB",
+        "description": "Disco duro externo portátil con capacidad de 2TB y USB 3.0.",
+        "price": 90,
+        "code": "SEAG2TB-010",
+        "stock": 60,
+        "category": "Almacenamiento"
+    },
+    {
+        "title": "Router WiFi ASUS RT-AX88U",
+        "description": "Router WiFi 6 con tecnología AiMesh y seguridad AiProtection Pro.",
+        "price": 300,
+        "code": "ASUSRTAX88U-011",
+        "stock": 35,
+        "category": "Redes"
+    },
+    {
+        "title": "Monitor Dell UltraSharp U2720Q",
+        "description": "Monitor 4K UHD de 27 pulgadas con cobertura del 99% de sRGB.",
+        "price": 650,
+        "code": "DU2720Q-012",
+        "stock": 25,
+        "category": "Monitores"
+    },
+    {
+        "title": "Proyector Epson Home Cinema 2150",
+        "description": "Proyector Full HD con 2500 lúmenes y conectividad inalámbrica.",
+        "price": 900,
+        "code": "EHC2150-013",
+        "stock": 20,
+        "category": "Proyectores"
+    },
+    {
+        "title": "Barra de Sonido Bose Soundbar 700",
+        "description": "Barra de sonido premium con control por voz y conectividad Bluetooth.",
+        "price": 800,
+        "code": "BOSESB700-014",
+        "stock": 30,
+        "category": "Audio"
+    },
+    {
+        "title": "Impresora HP LaserJet Pro M404dw",
+        "description": "Impresora láser monocromática con impresión a doble cara y WiFi.",
+        "price": 300,
+        "code": "HPLJM404DW-015",
+        "stock": 45,
+        "category": "Impresoras"
+    }
+]
