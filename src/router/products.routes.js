@@ -6,17 +6,17 @@ const router = Router();
 
 
 router.get("/", async (req, res) => {
-   try {
+    try {
 
     const { limit, page, sort, category, status } = req.query;
 
     const options = {
-      limit: limit || 10,
-      page: page || 1,
-      sort: {
-        price: sort === "asc" ? 1 : -1,
-      },
-      learn: true,
+        limit: limit || 10,
+        page: page || 1,
+        sort: {
+            price: sort === "asc" ? 1 : -1,
+        },
+        learn: true,
     };
 
     if (category){
@@ -29,7 +29,7 @@ router.get("/", async (req, res) => {
     }
     const products = await productDao.getProducts({}, options);
     res.status(200).json({status:"success", products});
-   } catch (error) { res.status(500).json({status:"Error", msg:"Error del servidor"})}
+    } catch (error) { res.status(500).json({status:"Error", msg:"Error del servidor"})}
 })
 
 router.get("/:pid", async (req, res) => { 
@@ -51,14 +51,14 @@ router.post("/", async  (req, res) => {
 })
 
 router.put("/:pid", async(req, res) => {
-      try {
+    try {
         const {pid} = req.params;
         const body = req.body;
         const product = await productDao.update(pid,body);
         if(!product) return res.status(400).json({status:"Error", msg:"Producto no encontrado"})
-  
-       res.status(200).json({status:"Succcess", product});
-      } catch (error) {res.status(500).json({status:"Error", msg:"Error del servidor"})}
+
+    res.status(200).json({status:"Succcess", product});
+    } catch (error) {res.status(500).json({status:"Error", msg:"Error del servidor"})}
 })
 
 router.delete("/:pid", async(req, res) => {
