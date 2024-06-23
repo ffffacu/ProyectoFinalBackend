@@ -1,0 +1,14 @@
+<div class="productFlex">
+
+    <div class="text-center p-4 productStyle" >
+        <h4 class="text-red-600 font-bold text-lg">{{title}}</h4>
+        <p class="text-zinc-500">Id de producto: {{_id}}</p>
+        <p class="text-zinc-500">Descripción: {{description}}</p>
+        <p class="text-zinc-500">Categoria: {{category}}</p>
+        <p class="text-zinc-500">Stock: {{stock}}</p>
+        <p class="text-zinc-800 font-bold text-xl">${{price}}</p>
+        <button type="button" class="bg-red-700 text-white py-2 px-4 addProductCart" data-id="{{_id}}">Agregar al carrito</button>
+         </div>
+    </div>
+
+    <script src="/js/viewProduct.js"></script>

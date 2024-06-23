@@ -1,12 +1,13 @@
 import { Router } from "express";
 import productDao from "../dao/mongoDB/product.dao.js";
 import { newServer } from "../app.js";
+import cartDao from "../dao/mongoDB/cart.dao.js";
 
 
 
 const router = Router();
 
-router.get("/", async (req,res)=>{
+router.get("/products", async (req,res)=>{
     try {
         const products = await productDao.getProducts();
         const cleanedProducts = products.docs.map(product => {
@@ -20,9 +21,31 @@ router.get("/", async (req,res)=>{
                 status: product.status
             };
         });
-        
+        // Se copiaron las propiedades necesarias para renderisar ya que me saltaba error de propiedades heredadas al enviarlas directamente
         res.render("home", { product: cleanedProducts });
     } catch (error) { res.status(500).json({status:"Error", msg:"Error del servidor"})}   
+})
+
+router.get("/products/:pid", async (req,res)=>{
+    try {
+        const {pid}=req.params;
+        const product = await productDao.getProductsById(pid);
+        if (product) {
+            res.render("productsId", product);
+        } else {
+            res.status(404).send('Producto no encontrado');
+        }
+    } catch (error) {
+       
+    }
+})
+
+router.post("products/:pid", async (req,res)=>{
+    try {
+        const cartSelect = "667779b61fba6714bb02c3e8";
+        const product = await cartDao.addProductToCart(cartSelect,pid)
+        
+    } catch (error) { res.status(500).json({status:"Error", msg:"Error del servidor"})} 
 })
 
 router.get("/realtimeproducts", async (req,res)=>{
