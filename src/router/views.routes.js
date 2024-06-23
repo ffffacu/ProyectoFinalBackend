@@ -8,8 +8,20 @@ const router = Router();
 
 router.get("/", async (req,res)=>{
     try {
-        const product = await productDao.getProducts();
-        res.render("home", {product});
+        const products = await productDao.getProducts();
+        const cleanedProducts = products.docs.map(product => {
+            return {
+                _id: product._id,
+                title: product.title,
+                description: product.description,
+                price: product.price,
+                stock: product.stock,
+                category: product.category,
+                status: product.status
+            };
+        });
+        
+        res.render("home", { product: cleanedProducts });
     } catch (error) { res.status(500).json({status:"Error", msg:"Error del servidor"})}   
 })
 

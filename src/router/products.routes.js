@@ -1,6 +1,5 @@
 import { Router } from "express";
 import productDao from "../dao/mongoDB/product.dao.js";
-import { checkProduct } from "../middlewares/checkProduct.middlewares.js";
 
 const router = Router();
 
@@ -34,11 +33,10 @@ router.get("/", async (req, res) => {
 
 router.get("/:pid", async (req, res) => { 
     try {
-        const { pid } = req.params;
+        const {pid} = req.params;
         const product = await productDao.getProductsById(pid);
         if(!product)return res.status(404).json({status:"Error", msg :"Producto no encontrado"})
         res.status(200).json({status:"success", product});
-        
     } catch (error) {res.status(500).json({status:"Error", msg:"Error del servidor"})};
 })
 
@@ -47,7 +45,12 @@ router.post("/", async  (req, res) => {
         const body = req.body
         const product = await productDao.create(body);
         res.status(201).json({status:"success", product});
-    } catch (error) {res.status(500).json({status:"Error", msg:"Error del servidor"})};
+    } catch (error) {
+    if (error.name === 'ValidationError') {
+        res.status(400).send({status:"Error", message: 'Faltan datos requeridos', errors: error.errors });
+    } else {
+        res.status(500).json({status:"Error", msg:"Error del servidor"});
+    }};
 })
 
 router.put("/:pid", async(req, res) => {

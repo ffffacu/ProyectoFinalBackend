@@ -1,27 +1,18 @@
 import { cartModel } from "./models/cart.model.js";
 
+
 const getAll = async ()=>{
     const carts = await cartModel.find();
     return carts
 }
 
-const cartId = async (id)=>{
-    const cartId = await  cartModel.findById(id).populate("products.product");
+const cartId = async (cid)=>{
+    const cartId = await cartModel.findById(cid).populate("products.product");
     return cartId
 }
 
 const create = async ()=>{
     const cart = await cartModel.create({});
-    return cart
-}
-
-const update = async (id, data )=>{
-    const cartUpdate = await cartModel.findByIdAndUpdate(id,data,{new:true})
-    return cartUpdate
-}
-
-const deleteCart = async (id)=>{
-    const cart = await cartModel.findByIdAndDelete({_id:id})
     return cart
 }
 
@@ -40,4 +31,19 @@ const upDateQuantity = async (cid,pid,quantity)=>{
     return cartUpdate;
 }
 
-export default{getAll,cartId,create,update,deleteCart, addProductToCart,upDateQuantity};
+const deleteProductToCart = async (cid,pid)=>{
+   const cart = await cartModel.findById(cid);
+   cart.products = cart.products.filter(e=> e.product.toString() !== pid);
+   await cart.save();
+   return cart;
+}
+
+const deleteAllProductToCart = async (cid)=>{
+    const cart = await cartModel.findById(cid);
+    cart.products = [];
+    await cart.save();
+   return cart;
+}
+
+
+export default{getAll,cartId,create, addProductToCart,upDateQuantity, deleteProductToCart,deleteAllProductToCart};
