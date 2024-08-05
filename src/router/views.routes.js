@@ -4,7 +4,6 @@ import { newServer } from "../app.js";
 import cartDao from "../dao/mongoDB/cart.dao.js";
 
 
-
 const router = Router();
 
 router.get("/products", async (req,res)=>{
@@ -40,11 +39,12 @@ router.get("/products/:pid", async (req,res)=>{
     }
 })
 
-router.post("products/:pid", async (req,res)=>{
+router.post("/products/:pid", async (req,res)=>{
     try {
+        const {productId}=req.body;
         const cartSelect = "667779b61fba6714bb02c3e8";
-        const product = await cartDao.addProductToCart(cartSelect,pid)
-        
+        await cartDao.addProductToCart(cartSelect,productId)
+        res.status(200).json({status:"success", productId});
     } catch (error) { res.status(500).json({status:"Error", msg:"Error del servidor"})} 
 })
 
