@@ -1,4 +1,4 @@
-import {productsModel} from "./models/product.model.js";
+import {productsModel} from "./product.model.js";
 
 const  getProducts = async (querry,options)=>{
     const products = await productsModel.paginate(querry,options)

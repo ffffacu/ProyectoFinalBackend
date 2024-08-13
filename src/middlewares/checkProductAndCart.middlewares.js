@@ -1,6 +1,6 @@
 import { request, response } from "express";
-import cartDao from "../dao/mongoDB/cart.dao.js";
-import productDao from "../dao/mongoDB/product.dao.js";
+import cartDao from "../modules/carts/cart.dao.js";
+import productDao from "../modules/products/product.dao.js";
 
 export const checkProductAndCart = async (req = request, res = response, next)=>{
     try {
