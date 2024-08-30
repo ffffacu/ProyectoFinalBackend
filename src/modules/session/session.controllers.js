@@ -1,6 +1,7 @@
 import { createToken } from "../../utils/jwt.js";
+import {request, response} from "express"
 
-const userRegister = async (req, res) => {
+const userRegister = async (req = request, res = response) => {
     try {
         return res.status(201).json({ status: "ok", msg: "User created" });
     } catch (error) {
@@ -8,7 +9,7 @@ const userRegister = async (req, res) => {
     }
 }
 
-const userLogin = async (req, res) => {
+const userLogin = async (req = request, res = response) => {
     try {
         const token = createToken(req.user);
         res.cookie("token",token,{httpOnly: true});
@@ -18,7 +19,7 @@ const userLogin = async (req, res) => {
     }
 }
 
-const userCurrent = async (req, res) => {
+const userCurrent = async (req = request, res = response) => {
     try {
         return res.status(200).json({ status: "ok", payload: req.user });
     } catch (error) {

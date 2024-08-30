@@ -44,6 +44,10 @@ const deleteAllProductToCart = async (cid)=>{
     await cart.save();
    return cart;
 }
+const update = async (id, data) =>{
+    const cartUpdate = await cartModel.findByIdAndUpdate(id,data, {new:true});
+    return cartUpdate;
+}
 
 
-export default{getAll,cartId,create, addProductToCart,upDateQuantity, deleteProductToCart,deleteAllProductToCart};
+export default{getAll,cartId,create, addProductToCart,upDateQuantity, deleteProductToCart,deleteAllProductToCart,update};

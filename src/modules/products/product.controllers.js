@@ -1,6 +1,7 @@
 import productServices from "./product.services.js";
+import {request, response} from "express"
 
-const getAllProduct = async (req, res) => {
+const getAllProduct = async (req = request, res = response) => {
     try {
     const { limit, page, sort, category, status } = req.query;
     const options = {
@@ -24,7 +25,7 @@ const getAllProduct = async (req, res) => {
     } catch (error) { res.status(500).json({status:"Error", msg:"Error del servidor"})}
 }
 
-const getProductById = async (req, res) => { 
+const getProductById = async (req = request, res = response) => { 
     try {
         const {pid} = req.params;
         const product = await productServices.getProductById(pid);
@@ -33,7 +34,7 @@ const getProductById = async (req, res) => {
     } catch (error) {res.status(500).json({status:"Error", msg:"Error del servidor"})};
 }
 
-const createProduct = async  (req, res) => {
+const createProduct = async  (req = request, res = response) => {
     try {
         const body = req.body
         const product = await productServices.createProduct(body);
@@ -46,7 +47,7 @@ const createProduct = async  (req, res) => {
     }};
 }
 
-const upDateProduct = async(req, res) => {
+const upDateProduct = async(req = request, res = response) => {
     try {
         const {pid} = req.params;
         const body = req.body;
@@ -57,7 +58,7 @@ const upDateProduct = async(req, res) => {
     } catch (error) {res.status(500).json({status:"Error", msg:"Server error"})}
 }
 
-const deleteProduct = async(req, res) => {
+const deleteProduct = async(req = request, res = response) => {
     try {
         const {pid}= req.params
         const productDelete = await productServices.deleteProduct(pid);

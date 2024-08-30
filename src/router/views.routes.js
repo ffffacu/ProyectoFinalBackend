@@ -1,7 +1,7 @@
 import { Router } from "express";
-import productDao from "../modules/products/product.dao.js";
+import productDao from "../modules/products/product.repository.js";
 import { newServer } from "../app.js";
-import cartDao from "../modules/carts/cart.dao.js";
+import cartDao from "../modules/carts/cart.repository.js";
 
 
 const router = Router();

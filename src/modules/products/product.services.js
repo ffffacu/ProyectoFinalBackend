@@ -1,13 +1,14 @@
-import productDao from "./product.dao.js";
+import productRepository from "./product.repository.js";
 
-const getAllProduct = async (querry,options) => {return await productDao.getProducts(querry,options)}
 
-const getProductById = async (pid) => {return await productDao.getProductsById(pid);}
+const getAllProduct = async (querry,options) => {return await productRepository.getProducts(querry,options)}
 
-const createProduct = async  (body) => {return await productDao.create(body)}
+const getProductById = async (pid) => {return await productRepository.getProductsById(pid);}
 
-const upDateProduct = async(pid,body) => {return await productDao.update(pid,body)}
+const createProduct = async  (body) => {return await productRepository.create(body)}
 
-const deleteProduct = async(pid) => {return await productDao.deleteOne(pid);}
+const upDateProduct = async(pid,body) => {return await productRepository.update(pid,body)}
+
+const deleteProduct = async(pid) => {return await productRepository.deleteOne(pid);}
 
 export default {getAllProduct,getProductById,createProduct,upDateProduct,deleteProduct}

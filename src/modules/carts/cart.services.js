@@ -1,17 +1,37 @@
-import cartDao from "./cart.dao.js";
+import cartRepository from "./cart.repository.js";
+import productRepository from "../products/product.repository.js";
+import { productDto } from "../../dto/product.dto.js";
 
-const createCart = async()=>{return await cartDao.create();}
 
-const getCartById = async(cid)=>{ return await cartDao.cartId(cid);}
+const createCart = async()=>{return await cartRepository.create();}
 
-const getCartAll = async()=>{return await cartDao.getAll();}
+const getCartById = async(cid)=>{ return await cartRepository.cartId(cid);}
 
-const addProductToCart = async(cid,pid)=>{return await cartDao.addProductToCart(cid,pid)}
+const getCartAll = async()=>{return await cartRepository.getAll();}
 
-const upDateQuantityProductToCart = async(cid,pid,quantity) => {return cartDao.upDateQuantity(cid,pid,quantity)}
+const addProductToCart = async(cid,pid)=>{return await cartRepository.addProductToCart(cid,pid)}
 
-const deleteProductToCart = async(cid,pid)=>{return await cartDao.deleteProductToCart(cid,pid)}
+const upDateQuantityProductToCart = async(cid,pid,quantity) => {return cartRepository.upDateQuantity(cid,pid,quantity)}
 
-const deleteAllProductToCart = async(cid)=>{return await cartDao.deleteAllProductToCart(cid);}
+const deleteProductToCart = async(cid,pid)=>{return await cartRepository.deleteProductToCart(cid,pid)}
 
-export default {createCart,getCartAll,getCartById,addProductToCart,upDateQuantityProductToCart,deleteProductToCart,deleteAllProductToCart}
+const deleteAllProductToCart = async(cid)=>{return await cartRepository.deleteAllProductToCart(cid);}
+
+const purchaseCart = async(cid)=>{
+    const cart = await cartRepository.cartId(cid);
+    let total = 0;
+    const productsWithOutStock=[];
+    for(const productCart of cart.products){
+        const product = await productRepository.getProductsById(productCart.product);
+        if(product.stock >= productCart.quantity){
+            total += product.price * productCart.quantity;
+            await productRepository.update(product._id,{stock: product.stock - productCart.quantity});
+        }else{
+            productsWithOutStock.push(productCart);
+        }
+        await cartRepository.update(cart._id,{products:productsWithOutStock});
+    }
+    return total;
+}
+
+export default {createCart,getCartAll,getCartById,addProductToCart,upDateQuantityProductToCart,deleteProductToCart,deleteAllProductToCart,purchaseCart}

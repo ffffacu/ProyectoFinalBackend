@@ -1,13 +1,16 @@
 import cartServices from "./cart.services.js";
+import  ticketServices  from "../ticket/ticket.services.js";
+import {request, response} from "express";
 
-const createCart = async(req,res)=>{
+
+const createCart = async(req = request, res = response)=>{
     try {
         const cart = await cartServices.createCart();
         res.status(200).json({status:"success", cart});
     } catch (error) {res.status(500).json({status:"Error", msg:"Server error"})}
 }
 
-const getCartById = async(req,res)=>{
+const getCartById = async(req = request, res = response)=>{
     try {
         const {cid} = req.params;
         const cartSelect = await cartServices.getCartById(cid); 
@@ -16,15 +19,14 @@ const getCartById = async(req,res)=>{
     } catch (error) {res.status(500).json({status:"Error", msg:"Server error"})}
 }
 
-const getCartAll = async(req,res)=>{
+const getCartAll = async(req = request, res = response)=>{
     try {
         const carts= await cartServices.getCartAll();
         res.status(200).json({status:"success", carts})
-        
     } catch (error) {res.status(500).json({status:"Error", msg:"Server error"})}
 }
 
-const addProductToCart = async(req,res)=>{
+const addProductToCart = async(req = request, res = response)=>{
     try {
         const {cid, pid} =req.params;
             const addProduct = await cartServices.addProductToCart(cid,pid)
@@ -32,7 +34,7 @@ const addProductToCart = async(req,res)=>{
         } catch (error) {res.status(500).json({status:"Error", msg:"Server error"})}
     }
 
-const upDateQuantityProductToCart = async(req,res) => {
+const upDateQuantityProductToCart = async(req = request, res = response) => {
     try {
         const {cid, pid} =req.params;
         const {quantity} = req.body;
@@ -41,7 +43,7 @@ const upDateQuantityProductToCart = async(req,res) => {
     } catch (error) {res.status(500).json({status:"Error", msg:"Server error"})}
 }
 
-const deleteProductToCart = async(req,res)=>{
+const deleteProductToCart = async(req = request, res = response)=>{
     try {
         const {cid, pid} =req.params;
             const cartDeleteProduct = await cartServices.deleteProductToCart(cid,pid)
@@ -50,7 +52,7 @@ const deleteProductToCart = async(req,res)=>{
     } catch (error) {res.status(500).json({status:"Error", msg:"Server error"})}
 }
 
-const deleteAllProductToCart = async(req,res)=>{
+const deleteAllProductToCart = async(req = request, res = response)=>{
     try {
         const {cid} =req.params;
         const cartSelect = await cartServices.getCartById(cid);
@@ -60,4 +62,19 @@ const deleteAllProductToCart = async(req,res)=>{
     } catch (error) {res.status(500).json({status:"Error", msg:"Server error"})}
 }
 
-export default {createCart,getCartAll,getCartById,addProductToCart,upDateQuantityProductToCart,deleteProductToCart,deleteAllProductToCart}
+const getPurchaseToCart = async(req = request, res = response)=>{
+    try {
+        const {cid} = req.params;
+        const cart = await cartServices.getCartById(cid);
+        if(!cart) return res.status(400).json({status:"Error",msg:"Cart not found"});
+        const total = await cartServices.purchaseCart(cid);
+        if(total == 0) return res.status(400).json({status:"Error",cart,msg:`Product out of stock`});
+        const ticket= await ticketServices.createTicket(req.user.email, total);
+        res.status(201).json({status:"success", ticket, cart});
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({status:"Error", msg:"Server error"})
+    }
+}
+
+export default {createCart,getCartAll,getCartById,addProductToCart,upDateQuantityProductToCart,deleteProductToCart,deleteAllProductToCart,getPurchaseToCart}
