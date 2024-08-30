@@ -15,15 +15,22 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8081/api/products",
+							"raw": "http://localhost:8080/api/products",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "8081",
+							"port": "8080",
 							"path": [
 								"api",
 								"products"
+							],
+							"query": [
+								{
+									"key": "category",
+									"value": "Laptops",
+									"disabled": true
+								}
 							]
 						}
 					},
@@ -35,16 +42,16 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8081/api/products/66704afba5579ea02504ec00",
+							"raw": "http://localhost:8080/api/products/66704afba5579ea02504ebf6",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "8081",
+							"port": "8080",
 							"path": [
 								"api",
 								"products",
-								"66704afba5579ea02504ec00"
+								"66704afba5579ea02504ebf6"
 							]
 						}
 					},
@@ -139,7 +146,19 @@
 					"name": "View carts",
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/carts",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"carts"
+							]
+						}
 					},
 					"response": []
 				},
@@ -149,7 +168,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/carts/667779b61fba6714bb02c3e8",
+							"raw": "http://localhost:8080/api/carts/66bbd22f14ff7fbb57f51be4",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -158,7 +177,7 @@
 							"path": [
 								"api",
 								"carts",
-								"667779b61fba6714bb02c3e8"
+								"66bbd22f14ff7fbb57f51be4"
 							]
 						}
 					},
@@ -170,12 +189,12 @@
 						"method": "POST",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8081/api/carts",
+							"raw": "http://localhost:8080/api/carts",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "8081",
+							"port": "8080",
 							"path": [
 								"api",
 								"carts"
@@ -190,7 +209,7 @@
 						"method": "POST",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/carts/66734d3490723d4205f0a94b/product/66704afba5579ea02504ebf5",
+							"raw": "http://localhost:8080/api/carts/66b00967ea5c910c2d6bbafb/product/66704afba5579ea02504ebf5",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -199,7 +218,7 @@
 							"path": [
 								"api",
 								"carts",
-								"66734d3490723d4205f0a94b",
+								"66b00967ea5c910c2d6bbafb",
 								"product",
 								"66704afba5579ea02504ebf5"
 							]
@@ -269,6 +288,28 @@
 						"header": []
 					},
 					"response": []
+				},
+				{
+					"name": "Purchase",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/cart/purchase/66afda6f9d87f37d866f6c69",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"cart",
+								"purchase",
+								"66afda6f9d87f37d866f6c69"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -282,7 +323,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"first_name\":\"Facundo\",\r\n    \"last_name\":\"Gomez\",\r\n    \"password\":\"1234\",\r\n    \"age\":29\r\n}\r\n",
+							"raw": "{\r\n    \"first_name\":\"Facundo\",\r\n    \"last_name\":\"Gomez\",\r\n    \"password\":\"12334\",\r\n    \"email\": \"ffffacu1256@hotmail.com\",\r\n    \"age\":29\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -290,13 +331,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/session/register",
+							"raw": "http://localhost:8080/api/session/register",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"api",
 								"session",
 								"register"
 							]
@@ -311,7 +353,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\":\"ffffacu125@hotmail.com\",\r\n    \"password\":\"1234\"\r\n}",
+							"raw": "{\r\n    \"email\":\"ffffacu1256@hotmail.com\",\r\n    \"password\":\"1234\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -338,7 +380,20 @@
 					"name": "Current",
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/session/current",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"session",
+								"current"
+							]
+						}
 					},
 					"response": []
 				}
